@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora SuperCycle: Ecosystem & Industry Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7; /* Warm neutral background */
+            color: #1F2937;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Chart Container Utilities */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width constraint */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Custom Scrollbar for nicer report feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F1F1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9CA3AF; 
+        }
+
+        .phase-card {
+            transition: all 0.3s ease;
+        }
+        .phase-card.active {
+            border-color: #4B5563;
+            background-color: #FFFFFF;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .role-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals (Stone, Sand, Off-White) with Professional Accents (Teal, Burnt Orange, Indigo) for data distinction. -->
+    <!-- Application Structure Plan: 
+         1. Executive Summary: High-level contrast between Old (Waterfall) and New (SuperCycle).
+         2. The Kinetic Model: Interactive Cycle diagram allowing users to toggle between Discovery, Optimality, and Simulation. This drives the content of the central "Deep Dive" section.
+         3. The Deep Dive (Dynamic): 
+            - Discovery View: STEEPLED Radar Chart (Visualizing Contingency Factors).
+            - Optimality View: FITU Analysis & Dominion Factors.
+            - Simulation View: Action Graph Bubble Chart (Impact vs Imminence vs Certainty).
+         4. The Squad: Interactive grid of roles, toggling between "Missionary" and "Mercenary" mindsets based on the M&M.md file.
+         5. The Rituals: A timeline/calendar visualization of the operating rhythm.
+         This structure moves from "Why" (Philosophy) to "What" (The Cycle/Data) to "Who" (Roles) to "When" (Rituals).
+    -->
+    <!-- Visualization & Content Choices:
+         - STEEPLED Radar Chart: chosen to show the multi-dimensional nature of "The LIST" and macro-environmental tracking.
+         - Action Graph Bubble Chart: chosen to visualize the 3 dimensions (Impact, Imminence, Certainty) crucial for the "Actionable Esteem" artifact.
+         - Interactive Cards: used for Roles to gamify the learning of "Missionary vs Mercenary" concepts without overwhelming text.
+         - Calendar Grid: used for Rituals to demonstrate the cadence (Daily vs Bi-weekly vs Quarterly).
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All visuals via Chart.js or HTML/CSS.
+    -->
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold serif tracking-tight text-stone-800">Aurora<span class="text-teal-600">SuperCycle</span></span>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-8 text-sm font-medium text-stone-500">
+                    <a href="#philosophy" class="hover:text-stone-900 transition-colors">Philosophy</a>
+                    <a href="#the-cycle" class="hover:text-stone-900 transition-colors">The Cycle</a>
+                    <a href="#roles" class="hover:text-stone-900 transition-colors">The Squad</a>
+                    <a href="#rituals" class="hover:text-stone-900 transition-colors">Rituals</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section: Philosophy -->
+    <header id="philosophy" class="bg-[#FDFBF7] pt-16 pb-12 border-b border-stone-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold text-stone-900 mb-6 leading-tight">
+                From Strategic Planning to <br><span class="text-teal-700">Strategic Intelligence</span>
+            </h1>
+            <p class="text-xl text-stone-600 mb-8 max-w-2xl mx-auto">
+                We are replacing static "Waterfall" strategy with the <strong>Aurora SuperCycle</strong>—a continuous loop of finding Truth, making Choices, and Testing outcomes.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 text-sm font-medium">
+                <div class="px-6 py-3 bg-white border border-stone-200 rounded-lg shadow-sm">
+                    <span class="block text-stone-400 uppercase text-xs tracking-wider mb-1">Old Way</span>
+                    Waterfall Planning
+                </div>
+                <div class="hidden sm:flex items-center text-stone-300">➜</div>
+                <div class="px-6 py-3 bg-stone-900 text-white rounded-lg shadow-md ring-2 ring-teal-500 ring-offset-2">
+                    <span class="block text-teal-400 uppercase text-xs tracking-wider mb-1">New Way</span>
+                    The SuperCycle
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECTION: THE KINETIC MODEL (Main Interactive Controller) -->
+        <section id="the-cycle" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="mb-12 max-w-3xl">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-4 serif">The Software Ecosystem</h2>
+                    <p class="text-lg text-stone-600">
+                        The SuperCycle ecosystem operates through three distinct software applications, each managing a specific type of "Control Factor." Click a phase below to explore the data inputs, artifacts, and logic of each stage.
+                    </p>
+                </div>
+
+                <!-- Interactive Tabs/Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <!-- Discovery Card -->
+                    <button onclick="updatePhase('discovery')" id="btn-discovery" class="phase-card active group relative p-6 rounded-xl border-2 border-teal-500 bg-white text-left focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                        <div class="absolute top-0 right-0 -mt-2 -mr-2 w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold text-sm shadow-sm">1</div>
+                        <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-teal-700 transition-colors">Aurora Discovery</h3>
+                        <p class="text-sm text-stone-500 mb-4">Hardens Contingency Factors</p>
+                        <div class="flex items-center text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-1 rounded w-fit">
+                            Output: "The LIST"
+                        </div>
+                    </button>
+
+                    <!-- Optimality Card -->
+                    <button onclick="updatePhase('optimality')" id="btn-optimality" class="phase-card group relative p-6 rounded-xl border border-stone-200 hover:border-orange-300 bg-stone-50 text-left focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
+                        <div class="absolute top-0 right-0 -mt-2 -mr-2 w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-700 font-bold text-sm shadow-sm">2</div>
+                        <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-orange-700 transition-colors">Aurora Optimality</h3>
+                        <p class="text-sm text-stone-500 mb-4">Hardens Dominion Factors</p>
+                        <div class="flex items-center text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded w-fit">
+                            Output: "IGC"
+                        </div>
+                    </button>
+
+                    <!-- Simulation Card -->
+                    <button onclick="updatePhase('simulation')" id="btn-simulation" class="phase-card group relative p-6 rounded-xl border border-stone-200 hover:border-indigo-300 bg-stone-50 text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <div class="absolute top-0 right-0 -mt-2 -mr-2 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold text-sm shadow-sm">3</div>
+                        <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-indigo-700 transition-colors">Aurora Simulation</h3>
+                        <p class="text-sm text-stone-500 mb-4">Hardens Influence Factors</p>
+                        <div class="flex items-center text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded w-fit">
+                            Output: "Actionable Esteem"
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Area -->
+                <div class="bg-[#F9FAFB] rounded-2xl p-6 md:p-8 border border-stone-200 shadow-inner">
+                    
+                    <!-- Content: Discovery -->
+                    <div id="content-discovery" class="block animate-fade-in">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-2xl font-bold text-stone-900 mb-4">Discovery: Finding the Truth</h3>
+                                <p class="text-stone-600 mb-6">
+                                    The <strong>Discovery</strong> phase focuses on "Contingency Factors"—uncontrollable external forces. We use the <strong>STEEPLED</strong> framework to scan the macro-environment and produce "The LIST" (Landscape, Issues, Stakeholders, Trends).
+                                </p>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs font-bold mt-1 mr-3">✓</span>
+                                        <div>
+                                            <span class="block font-semibold text-stone-900">Mission</span>
+                                            <span class="text-sm text-stone-500">Determine boundaries of the macro-environment.</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs font-bold mt-1 mr-3">✓</span>
+                                        <div>
+                                            <span class="block font-semibold text-stone-900">Key Question</span>
+                                            <span class="text-sm text-stone-500">"What is happening that we cannot control but must cope with?"</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-teal-500 shadow-sm">
+                                    <p class="text-sm italic text-stone-600">"The Missionary (Landscape Architect) owns this phase, tracking Truth regardless of whether it is convenient."</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-4 text-center">STEEPLED Analysis (The LIST)</h4>
+                                <div class="chart-container">
+                                    <canvas id="discoveryChart"></canvas>
+                                </div>
+                                <p class="text-xs text-center text-stone-400 mt-4">Real-time tracking of external volatility.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content: Optimality -->
+                    <div id="content-optimality" class="hidden animate-fade-in">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-2xl font-bold text-stone-900 mb-4">Optimality: Making the Choice</h3>
+                                <p class="text-stone-600 mb-6">
+                                    <strong>Optimality</strong> hardens "Dominion Factors"—the things we <em>can</em> control. Here, we move from broad possibilities to a specific <strong>Investment Grade Conjecture (IGC)</strong>. We use Choice Cascades to select and sacrifice.
+                                </p>
+                                <div class="space-y-4 mb-8">
+                                    <div class="p-4 bg-orange-50 rounded-lg border border-orange-100">
+                                        <h5 class="font-bold text-orange-900 text-sm mb-2">The FITU Criteria</h5>
+                                        <div class="grid grid-cols-2 gap-4 text-sm">
+                                            <div><strong class="text-orange-700">F</strong>or: Who is it for?</div>
+                                            <div><strong class="text-orange-700">I</strong>t's: What is it?</div>
+                                            <div><strong class="text-orange-700">T</strong>hat: What does it do?</div>
+                                            <div><strong class="text-orange-700">U</strong>nlike: How is it different?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-orange-500 shadow-sm">
+                                    <p class="text-sm italic text-stone-600">"Superiority isn't the choice you make; it is the choice the market makes. The Mercenary sacrifices options to find the winning path."</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-center">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6 text-center">Investment Grade Conjecture Builder</h4>
+                                
+                                <div class="space-y-3">
+                                    <!-- Interactive "Conjecture" Builder mockup -->
+                                    <div class="flex items-center justify-between p-3 bg-stone-50 rounded border border-stone-200 hover:border-orange-300 cursor-pointer transition-colors">
+                                        <span class="text-sm font-medium text-stone-700">1. Winning Aspiration</span>
+                                        <span class="text-xs text-green-600 font-bold">DEFINED</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-stone-50 rounded border border-stone-200 hover:border-orange-300 cursor-pointer transition-colors">
+                                        <span class="text-sm font-medium text-stone-700">2. Where to Play</span>
+                                        <span class="text-xs text-green-600 font-bold">SELECTED</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-stone-50 rounded border border-stone-200 hover:border-orange-300 cursor-pointer transition-colors">
+                                        <span class="text-sm font-medium text-stone-700">3. How to Win</span>
+                                        <span class="text-xs text-orange-600 font-bold animate-pulse">PENDING...</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-stone-50 rounded border border-stone-200 opacity-50">
+                                        <span class="text-sm font-medium text-stone-700">4. Capabilities Required</span>
+                                        <span class="text-xs text-stone-400">LOCKED</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-6 border-t border-stone-100">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-stone-500">Current Confidence:</span>
+                                        <div class="w-2/3 bg-stone-200 rounded-full h-2">
+                                            <div class="bg-orange-500 h-2 rounded-full" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content: Simulation -->
+                    <div id="content-simulation" class="hidden animate-fade-in">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-2xl font-bold text-stone-900 mb-4">Simulation: Testing the Future</h3>
+                                <p class="text-stone-600 mb-6">
+                                    <strong>Simulation</strong> hardens "Influence Factors"—how stakeholders will react. We don't guess; we wargame. The output is <strong>Actionable Esteem</strong>: a scientifically validated probability of success.
+                                </p>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold mt-1 mr-3">✓</span>
+                                        <div>
+                                            <span class="block font-semibold text-stone-900">Mission</span>
+                                            <span class="text-sm text-stone-500">Red-team the strategy against "Influence Factors".</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold mt-1 mr-3">✓</span>
+                                        <div>
+                                            <span class="block font-semibold text-stone-900">Key Output</span>
+                                            <span class="text-sm text-stone-500">The Action Graph (Impact vs Imminence).</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-indigo-500 shadow-sm">
+                                    <p class="text-sm italic text-stone-600">"The Simulation Commander forces the team to answer: Who can stop us, and how?"</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-4 text-center">The Action Graph</h4>
+                                <div class="chart-container">
+                                    <canvas id="simulationChart"></canvas>
+                                </div>
+                                <p class="text-xs text-center text-stone-400 mt-4">Bubble Size = Certainty of Outcome</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: THE SQUAD (Roles) -->
+        <section id="roles" class="py-16 bg-[#FDFBF7] border-t border-stone-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-stone-900 serif mb-4">The Squad</h2>
+                    <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                        The SuperCycle is executed by distinct roles. Each role embodies a specific mindset: the idealistic <strong>Missionary</strong> or the pragmatic <strong>Mercenary</strong>.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Role 1 -->
+                    <div class="role-card bg-white p-6 rounded-lg border border-stone-200 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+                        <div class="mb-4">
+                            <span class="inline-block px-2 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded uppercase tracking-wide">Discovery</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900">Landscape Architect</h3>
+                        <p class="text-sm text-teal-600 font-medium mb-4">The Missionary</p>
+                        <p class="text-sm text-stone-500 mb-4">Tracks the macro-environment. Owns "The LIST". Prioritizes Truth over convenience.</p>
+                        <div class="pt-4 border-t border-stone-100 text-xs text-stone-400">
+                            "I sacrifice myself for the cause."
+                        </div>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="role-card bg-white p-6 rounded-lg border border-stone-200 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                        <div class="mb-4">
+                            <span class="inline-block px-2 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded uppercase tracking-wide">Optimality</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900">Superiority Strategist</h3>
+                        <p class="text-sm text-orange-600 font-medium mb-4">The Mercenary</p>
+                        <p class="text-sm text-stone-500 mb-4">Selects and sacrifices choices. Owns the IGC. Acquires consent from those who control outcomes.</p>
+                        <div class="pt-4 border-t border-stone-100 text-xs text-stone-400">
+                            "I ignore stakeholders who don't matter."
+                        </div>
+                    </div>
+
+                    <!-- Role 3 -->
+                    <div class="role-card bg-white p-6 rounded-lg border border-stone-200 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                        <div class="mb-4">
+                            <span class="inline-block px-2 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded uppercase tracking-wide">Simulation</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900">Simulation Commander</h3>
+                        <p class="text-sm text-indigo-600 font-medium mb-4">The Champion</p>
+                        <p class="text-sm text-stone-500 mb-4">Red-teams the strategy. Owns Actionable Esteem. Balances empathy with guile.</p>
+                        <div class="pt-4 border-t border-stone-100 text-xs text-stone-400">
+                            "I ensure we aren't fooling ourselves."
+                        </div>
+                    </div>
+
+                    <!-- Role 4 -->
+                    <div class="role-card bg-white p-6 rounded-lg border border-stone-200 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-stone-800"></div>
+                        <div class="mb-4">
+                            <span class="inline-block px-2 py-1 bg-stone-100 text-stone-600 text-xs font-bold rounded uppercase tracking-wide">Orchestration</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900">SuperCycle Master</h3>
+                        <p class="text-sm text-stone-600 font-medium mb-4">The Orchestrator</p>
+                        <p class="text-sm text-stone-500 mb-4">Manages the Action Graph. Triggers rituals. Ensures the cycle never stops.</p>
+                        <div class="pt-4 border-t border-stone-100 text-xs text-stone-400">
+                            "I keep the physics in motion."
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: RITUALS (Timeline) -->
+        <section id="rituals" class="py-16 bg-white border-t border-stone-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-stone-900 serif mb-4">The Rituals</h2>
+                    <p class="text-lg text-stone-600">
+                        Unlike Waterfall's annual retreats, the SuperCycle is alive. It breathes through proactive rhythms and reactive swarms.
+                    </p>
+                </div>
+
+                <div class="relative">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-stone-200"></div>
+
+                    <!-- Ritual 1 -->
+                    <div class="relative flex items-center justify-between mb-8">
+                        <div class="w-5/12 text-right pr-8">
+                            <h4 class="font-bold text-stone-900">Daily LIST Check</h4>
+                            <p class="text-sm text-stone-500">Review changes in Contingency Factors (Landscape/Issues).</p>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-teal-500 rounded-full border-4 border-white shadow"></div>
+                        <div class="w-5/12 pl-8">
+                            <span class="text-xs font-bold text-teal-600 uppercase">Proactive • Daily</span>
+                        </div>
+                    </div>
+
+                    <!-- Ritual 2 -->
+                    <div class="relative flex items-center justify-between mb-8">
+                        <div class="w-5/12 text-right pr-8">
+                            <span class="text-xs font-bold text-orange-600 uppercase">Proactive • Bi-Weekly</span>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-500 rounded-full border-4 border-white shadow"></div>
+                        <div class="w-5/12 pl-8">
+                            <h4 class="font-bold text-stone-900">Optimality Orbit</h4>
+                            <p class="text-sm text-stone-500">Refine IGC. What choices must we select or sacrifice?</p>
+                        </div>
+                    </div>
+
+                    <!-- Ritual 3 -->
+                    <div class="relative flex items-center justify-between mb-8">
+                        <div class="w-5/12 text-right pr-8">
+                            <h4 class="font-bold text-stone-900">Simulation Pressure Test</h4>
+                            <p class="text-sm text-stone-500">Wargame the strategy against Influence Factors.</p>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white shadow"></div>
+                        <div class="w-5/12 pl-8">
+                            <span class="text-xs font-bold text-indigo-600 uppercase">Proactive • Quarterly</span>
+                        </div>
+                    </div>
+
+                    <!-- Ritual 4 -->
+                    <div class="relative flex items-center justify-between">
+                        <div class="w-5/12 text-right pr-8">
+                            <span class="text-xs font-bold text-red-600 uppercase">Reactive • Triggered</span>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-white shadow animate-pulse"></div>
+                        <div class="w-5/12 pl-8">
+                            <h4 class="font-bold text-stone-900">Stochasm Swarm</h4>
+                            <p class="text-sm text-stone-500">Immediate response when a fundamental "Truth" changes.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-2xl font-bold text-white serif mb-4">Ready to enter the SuperCycle?</h2>
+            <p class="mb-8 max-w-xl mx-auto">
+                Move from "Planning" to "Intelligence". Build your Squad. Harden your Factors. 
+            </p>
+            <div class="text-sm border-t border-stone-800 pt-8">
+                &copy; 2024 Aurora WDC. Generated for Stakeholder Review.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // State Management
+        let currentPhase = 'discovery';
+
+        // Data for Discovery Radar Chart (STEEPLED)
+        const steepledData = {
+            labels: ['Social', 'Technological', 'Economic', 'Environmental', 'Political', 'Legal', 'Ethical', 'Demographic'],
+            datasets: [{
+                label: 'Macro-Environment Volatility Index',
+                data: [65, 90, 45, 80, 50, 30, 40, 60],
+                fill: true,
+                backgroundColor: 'rgba(20, 184, 166, 0.2)', // Teal-500
+                borderColor: 'rgb(20, 184, 166)',
+                pointBackgroundColor: 'rgb(20, 184, 166)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(20, 184, 166)'
+            }]
+        };
+
+        // Data for Simulation Bubble Chart (Action Graph)
+        // x: Imminence (0-10, 0 is far, 10 is now)
+        // y: Impact (0-10, 10 is critical)
+        // r: Certainty (Size of bubble)
+        const actionGraphData = {
+            datasets: [{
+                label: 'High Priority (Act Now)',
+                data: [
+                    {x: 9, y: 9, r: 15, label: "Competitor M&A"},
+                    {x: 8, y: 8, r: 10, label: "Reg. Change"}
+                ],
+                backgroundColor: 'rgba(239, 68, 68, 0.6)' // Red
+            },
+            {
+                label: 'Monitor Closely',
+                data: [
+                    {x: 5, y: 7, r: 8, label: "Tech Shift"},
+                    {x: 6, y: 4, r: 12, label: "Talent Gap"}
+                ],
+                backgroundColor: 'rgba(249, 115, 22, 0.6)' // Orange
+            },
+            {
+                label: 'Watch List',
+                data: [
+                    {x: 2, y: 3, r: 5, label: "Trend X"},
+                    {x: 3, y: 2, r: 6, label: "Trend Y"}
+                ],
+                backgroundColor: 'rgba(99, 102, 241, 0.6)' // Indigo
+            }]
+        };
+
+        // Chart Initialization
+        let discoveryChart, simulationChart;
+
+        function initCharts() {
+            // Discovery Chart
+            const ctxDiscovery = document.getElementById('discoveryChart').getContext('2d');
+            discoveryChart = new Chart(ctxDiscovery, {
+                type: 'radar',
+                data: steepledData,
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#E5E7EB' },
+                            grid: { color: '#E5E7EB' },
+                            pointLabels: {
+                                font: { size: 10, family: "'Inter', sans-serif" },
+                                color: '#4B5563'
+                            },
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '/100 Volatility';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Simulation Chart
+            const ctxSimulation = document.getElementById('simulationChart').getContext('2d');
+            simulationChart = new Chart(ctxSimulation, {
+                type: 'bubble',
+                data: actionGraphData,
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Imminence (Time)', color: '#6B7280' },
+                            min: 0, max: 10,
+                            grid: { color: '#F3F4F6' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Impact (Severity)', color: '#6B7280' },
+                            min: 0, max: 10,
+                            grid: { color: '#F3F4F6' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw.label + ' (Certainty: ' + context.raw.r * 2 + '%)';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Phase Switching Logic
+        function updatePhase(phase) {
+            currentPhase = phase;
+            
+            // Reset Styles
+            document.querySelectorAll('.phase-card').forEach(el => {
+                el.classList.remove('active', 'border-teal-500', 'border-orange-500', 'border-indigo-500', 'ring-2');
+                el.classList.add('border-stone-200');
+            });
+            
+            // Hide all contents
+            document.getElementById('content-discovery').classList.add('hidden');
+            document.getElementById('content-optimality').classList.add('hidden');
+            document.getElementById('content-simulation').classList.add('hidden');
+
+            // Activate Selected
+            const btn = document.getElementById('btn-' + phase);
+            const content = document.getElementById('content-' + phase);
+            
+            content.classList.remove('hidden');
+            btn.classList.remove('border-stone-200');
+            btn.classList.add('active');
+            
+            // Add specific border color based on phase
+            if(phase === 'discovery') {
+                btn.classList.add('border-teal-500');
+            } else if (phase === 'optimality') {
+                btn.classList.add('border-orange-500'); // Note: Tailwind default orange
+            } else {
+                btn.classList.add('border-indigo-500');
+            }
+        }
+
+        // Initialize on Load
+        window.addEventListener('load', () => {
+            initCharts();
+            // Start with Discovery active
+            updatePhase('discovery');
+        });
+
+    </script>
+</body>
+</html>
