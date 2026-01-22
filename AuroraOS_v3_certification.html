@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Institute | SuperCycle Certification & Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #1F2937;
+        }
+
+        .serif {
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .institute-gradient {
+            background: linear-gradient(135deg, #1E3A5F 0%, #0D1B2A 100%);
+        }
+
+        .gold-accent {
+            color: #B8860B;
+        }
+
+        .gold-bg {
+            background-color: #B8860B;
+        }
+
+        .card-elevated {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .certification-badge {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid;
+        }
+
+        .pathway-connector {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            width: 2px;
+            height: calc(100% - 120px);
+            background: linear-gradient(180deg, #10B981, #F59E0B, #6366F1);
+        }
+
+        .role-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .role-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .role-card.active {
+            border-color: #1E3A5F;
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.15);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 institute-gradient rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold serif text-lg">A</span>
+                    </div>
+                    <div>
+                        <span class="text-xl font-semibold text-gray-900">Aurora Institute</span>
+                        <span class="block text-xs text-gray-500 -mt-1">SuperCycle Certification</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-sm">
+                    <a href="#methodology" class="text-gray-600 hover:text-gray-900 font-medium">Methodology</a>
+                    <a href="#certifications" class="text-gray-600 hover:text-gray-900 font-medium">Certifications</a>
+                    <a href="#roles" class="text-gray-600 hover:text-gray-900 font-medium">Roles</a>
+                    <a href="#" class="px-5 py-2.5 institute-gradient text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+                        Enroll Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="institute-gradient py-24 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white/80 text-sm mb-8">
+                Professional Certification Program
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 serif">
+                Become a Certified<br>
+                <span class="gold-accent">Strategic Intelligence</span> Professional
+            </h1>
+
+            <p class="text-xl text-white/70 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Master the SuperCycle methodology&mdash;the operating system replacing annual strategic planning with continuous, actionable intelligence. Join the next generation of strategy practitioners.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#certifications" class="px-8 py-4 gold-bg text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+                    View Certification Paths
+                </a>
+                <a href="#methodology" class="px-8 py-4 border border-white/30 text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
+                    Learn the Methodology
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Methodology Overview -->
+    <section id="methodology" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 serif">The SuperCycle Methodology</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    A continuous loop of Discovery, Optimality, and Simulation that transforms how organizations make strategic decisions.
+                </p>
+            </div>
+
+            <!-- Manifesto -->
+            <div class="card-elevated rounded-2xl p-8 md:p-12 mb-16">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 text-center serif">The SuperCycle Manifesto</h3>
+                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <p class="font-semibold text-gray-900">Dynamic Recalibration</p>
+                            <p class="text-sm text-gray-500">over Annual Strategic Planning</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <p class="font-semibold text-gray-900">Investment-Grade Conjecture</p>
+                            <p class="text-sm text-gray-500">over Executive Gut Instinct</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <p class="font-semibold text-gray-900">Actionable Esteem</p>
+                            <p class="text-sm text-gray-500">over Analysis Paralysis</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <p class="font-semibold text-gray-900">Missionary Truth + Mercenary Action</p>
+                            <p class="text-sm text-gray-500">over blind idealism or soulless execution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Three Phases -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-elevated rounded-xl p-8 border-t-4 border-emerald-600">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xl mb-6">1</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Discovery</h3>
+                    <p class="text-gray-600 mb-4">
+                        Harden <strong>Contingency Factors</strong>&mdash;the uncontrollable external forces. Produce "The LIST" through STEEPLED analysis.
+                    </p>
+                    <div class="pt-4 border-t border-gray-100">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Key Question</p>
+                        <p class="text-sm text-gray-700 italic">"What is changing that we cannot control but must cope with?"</p>
+                    </div>
+                </div>
+
+                <div class="card-elevated rounded-xl p-8 border-t-4 border-amber-600">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-xl mb-6">2</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Optimality</h3>
+                    <p class="text-gray-600 mb-4">
+                        Harden <strong>Dominion Factors</strong>&mdash;the choices you control. Build the Investment Grade Conjecture through select and sacrifice.
+                    </p>
+                    <div class="pt-4 border-t border-gray-100">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Key Question</p>
+                        <p class="text-sm text-gray-700 italic">"What choices will we make, and what will we explicitly NOT do?"</p>
+                    </div>
+                </div>
+
+                <div class="card-elevated rounded-xl p-8 border-t-4 border-indigo-600">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xl mb-6">3</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Simulation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Harden <strong>Influence Factors</strong>&mdash;how stakeholders will react. Wargame to produce Actionable Esteem.
+                    </p>
+                    <div class="pt-4 border-t border-gray-100">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Key Question</p>
+                        <p class="text-sm text-gray-700 italic">"Who can stop us, and what is our probability of success?"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Pathways -->
+    <section id="certifications" class="py-20 px-6 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 serif">Certification Pathways</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Three levels of certification from practitioner to master. Build expertise progressively.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Level 1 -->
+                <div class="card-elevated rounded-2xl overflow-hidden">
+                    <div class="bg-emerald-600 p-6 text-center">
+                        <div class="certification-badge mx-auto bg-white border-emerald-700 mb-4">
+                            <span class="text-3xl font-bold text-emerald-700">CSP</span>
+                            <span class="text-xs text-emerald-600">Level 1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Certified SuperCycle Practitioner</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-gray-500">Investment</span>
+                            <span class="text-2xl font-bold text-gray-900">$500-$800</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6">
+                            Foundation certification for analysts and associates entering strategic intelligence.
+                        </p>
+                        <h4 class="font-semibold text-gray-900 mb-3 text-sm">Curriculum:</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Control Factors (Dominion, Contingency, Influence)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                STEEPLED Framework
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                LIST Basics & Action Graph
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Missionary/Mercenary Mindsets
+                            </li>
+                        </ul>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-xs text-gray-500 mb-1">Outcome</p>
+                            <p class="text-sm text-gray-900">Contribute data to The LIST and participate in rituals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 2 -->
+                <div class="card-elevated rounded-2xl overflow-hidden">
+                    <div class="bg-amber-600 p-6 text-center">
+                        <div class="certification-badge mx-auto bg-white border-amber-700 mb-4">
+                            <span class="text-3xl font-bold text-amber-700">CRS</span>
+                            <span class="text-xs text-amber-600">Level 2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Certified Role Specialist</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-gray-500">Investment</span>
+                            <span class="text-2xl font-bold text-gray-900">$1,500-$2,000</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6">
+                            Specialize in one phase: Discovery, Optimality, or Simulation.
+                        </p>
+                        <h4 class="font-semibold text-gray-900 mb-3 text-sm">Specialization Tracks:</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                CRS-Discovery (Landscape Architect)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                CRS-Optimality (Superiority Strategist)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                CRS-Simulation (Simulation Commander)
+                            </li>
+                        </ul>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-xs text-gray-500 mb-1">Outcome</p>
+                            <p class="text-sm text-gray-900">Independently own one SuperCycle phase and operate the corresponding app</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="card-elevated rounded-2xl overflow-hidden ring-2 ring-indigo-600">
+                    <div class="bg-indigo-700 p-6 text-center">
+                        <div class="certification-badge mx-auto bg-white border-indigo-800 mb-4">
+                            <span class="text-3xl font-bold text-indigo-800">CSM</span>
+                            <span class="text-xs text-indigo-600">Level 3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Certified SuperCycle Master</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-gray-500">Investment</span>
+                            <span class="text-2xl font-bold text-gray-900">$3,000+</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6">
+                            Install and orchestrate the SuperCycle across entire organizations.
+                        </p>
+                        <h4 class="font-semibold text-gray-900 mb-3 text-sm">Prerequisites:</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Level 1: CSP Certification
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Level 2: One CRS Specialization
+                            </li>
+                        </ul>
+                        <div class="bg-indigo-50 rounded-lg p-4">
+                            <p class="text-xs text-indigo-600 mb-1">Outcome</p>
+                            <p class="text-sm text-indigo-900 font-medium">Implement SuperCycle enterprise-wide and lead organizational transformation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Continuing Education -->
+            <div class="card-elevated rounded-xl p-8 mt-12 text-center">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Maintain Your Certification</h3>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                    Annual renewal ($100-$300) requires 20 Aurora Units (AUs) through webinars, community contributions, and micro-courses. Stay current with methodology updates and best practices.
+                </p>
+                <a href="#" class="text-indigo-600 font-semibold hover:text-indigo-700">View Continuing Education Catalog &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Roles -->
+    <section id="roles" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 serif">The Strategy Squad</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Four distinct roles execute the SuperCycle. Each balances Missionary idealism with Mercenary pragmatism.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Landscape Architect -->
+                <div class="role-card card-elevated rounded-xl p-6 border-2 border-transparent">
+                    <div class="w-full h-1 bg-emerald-500 rounded mb-6"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Landscape Architect</h3>
+                    <p class="text-sm text-emerald-600 font-medium mb-4">Discovery Phase</p>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Owns The LIST. Tracks the macro-environment for truth, regardless of convenience.
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Mindset</p>
+                        <p class="text-sm font-medium text-gray-900">Missionary</p>
+                        <p class="text-xs text-gray-500 italic">"I sacrifice myself for the cause."</p>
+                    </div>
+                </div>
+
+                <!-- Superiority Strategist -->
+                <div class="role-card card-elevated rounded-xl p-6 border-2 border-transparent">
+                    <div class="w-full h-1 bg-amber-500 rounded mb-6"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Superiority Strategist</h3>
+                    <p class="text-sm text-amber-600 font-medium mb-4">Optimality Phase</p>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Owns the IGC. Selects winning choices and explicitly sacrifices the rest.
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Mindset</p>
+                        <p class="text-sm font-medium text-gray-900">Mercenary</p>
+                        <p class="text-xs text-gray-500 italic">"I ignore stakeholders who don't matter."</p>
+                    </div>
+                </div>
+
+                <!-- Simulation Commander -->
+                <div class="role-card card-elevated rounded-xl p-6 border-2 border-transparent">
+                    <div class="w-full h-1 bg-indigo-500 rounded mb-6"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Simulation Commander</h3>
+                    <p class="text-sm text-indigo-600 font-medium mb-4">Simulation Phase</p>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Owns Actionable Esteem. Red-teams strategy through wargaming.
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Mindset</p>
+                        <p class="text-sm font-medium text-gray-900">Champion</p>
+                        <p class="text-xs text-gray-500 italic">"I ensure we aren't fooling ourselves."</p>
+                    </div>
+                </div>
+
+                <!-- SuperCycle Master -->
+                <div class="role-card card-elevated rounded-xl p-6 border-2 border-transparent">
+                    <div class="w-full h-1 bg-gray-800 rounded mb-6"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">SuperCycle Master</h3>
+                    <p class="text-sm text-gray-600 font-medium mb-4">Orchestration</p>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Manages the Action Graph. Triggers rituals. Ensures the cycle never stops.
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Mindset</p>
+                        <p class="text-sm font-medium text-gray-900">Balanced Champion</p>
+                        <p class="text-xs text-gray-500 italic">"I keep the physics in motion."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rituals Section -->
+    <section class="py-20 px-6 bg-gray-100">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 serif">The Operating Rhythm</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Unlike annual strategy off-sites that produce shelf-ware, the SuperCycle operates through continuous decision cadences.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Proactive Rituals -->
+                <div class="card-elevated rounded-xl p-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-6">Proactive Rituals</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                <span class="text-emerald-700 font-bold text-sm">D</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Daily LIST Check</p>
+                                <p class="text-sm text-gray-500">15 min &bull; Landscape Architect</p>
+                                <p class="text-sm text-gray-600 mt-1">Triggers immediate response when weak signals emerge</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                <span class="text-amber-700 font-bold text-sm">2W</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Optimality Orbit</p>
+                                <p class="text-sm text-gray-500">60 min &bull; Superiority Strategist</p>
+                                <p class="text-sm text-gray-600 mt-1">Recalibrates investment decisions bi-weekly</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                                <span class="text-indigo-700 font-bold text-sm">Q</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Simulation Pressure Test</p>
+                                <p class="text-sm text-gray-500">4 hours &bull; Simulation Commander</p>
+                                <p class="text-sm text-gray-600 mt-1">Validates or invalidates strategy quarterly</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reactive Rituals -->
+                <div class="card-elevated rounded-xl p-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-6">Reactive Rituals</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 animate-pulse">
+                                <span class="text-red-700 font-bold text-sm">!</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Stochasm Swarm</p>
+                                <p class="text-sm text-gray-500">Triggered by Contingency Shift</p>
+                                <p class="text-sm text-gray-600 mt-1">Halts execution when reality diverges from plan. Immediate gap closure.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                                <span class="text-orange-700 font-bold text-sm">!</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Influence Intercept</p>
+                                <p class="text-sm text-gray-500">Triggered by Stakeholder Move</p>
+                                <p class="text-sm text-gray-600 mt-1">Rapid counterfactual simulation when competitors act unexpectedly.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-gray-50 rounded-lg border-l-4 border-gray-800">
+                        <p class="text-sm text-gray-700 italic">
+                            "The Mercenary understands that no plan will survive engagement with the enemy."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="institute-gradient rounded-2xl p-12 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4 serif">
+                    Join the Strategic Intelligence Movement
+                </h2>
+                <p class="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                    Be among the first certified SuperCycle practitioners. Transform how your organization makes strategic decisions.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#" class="px-8 py-4 gold-bg text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+                        Enroll in Level 1 (CSP)
+                    </a>
+                    <a href="#" class="px-8 py-4 border border-white/30 text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
+                        Download Curriculum
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 Aurora Institute. A division of Aurora WDC.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora SuperCycle | Strategic Intelligence Operating System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --aurora-dark: #0A0F1C;
+            --aurora-navy: #111827;
+            --aurora-slate: #1E293B;
+            --aurora-teal: #14B8A6;
+            --aurora-gold: #F59E0B;
+            --aurora-text: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--aurora-dark);
+            color: var(--aurora-text);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #14B8A6 0%, #06B6D4 50%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-glow {
+            box-shadow: 0 0 40px rgba(20, 184, 166, 0.1);
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        .phase-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-aurora-dark/80 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">A</span>
+                    </div>
+                    <span class="text-xl font-semibold text-white">Aurora<span class="text-teal-400">SuperCycle</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-sm text-slate-400">
+                    <a href="#problem" class="hover:text-white transition-colors">The Problem</a>
+                    <a href="#system" class="hover:text-white transition-colors">The System</a>
+                    <a href="#outputs" class="hover:text-white transition-colors">Outputs</a>
+                    <a href="#action" class="hover:text-white transition-colors">Take Action</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 text-sm text-slate-300 mb-8">
+                <span class="w-2 h-2 rounded-full bg-teal-400 mr-2 animate-pulse"></span>
+                Strategic Intelligence Operating System
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+                Stop Planning.<br>
+                <span class="gradient-text">Start Deciding.</span>
+            </h1>
+
+            <p class="text-xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+                Your annual strategic plan is obsolete the moment it's printed. The SuperCycle delivers <strong class="text-white">investment-grade decisions</strong> with probability-scored confidence&mdash;so you can commit resources without guessing.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#system" class="px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+                    See How It Works
+                </a>
+                <a href="#outputs" class="px-8 py-4 border border-slate-600 text-slate-300 font-medium rounded-lg hover:border-slate-500 hover:text-white transition-colors">
+                    View Decision Outputs
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Statement -->
+    <section id="problem" class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">
+                        Traditional Strategy is Broken
+                    </h2>
+                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                        Annual planning cycles produce <strong class="text-amber-400">"Zombie Strategy"</strong>&mdash;executing plans no longer aligned with market reality. The result? Decisions made on gut instinct, analysis paralysis, and strategies that fail before implementation.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                                <span class="text-red-400 text-lg">!</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium">90% of strategies fail to execute</p>
+                                <p class="text-slate-500 text-sm">Organizations lose 10% of annual revenue from the strategy-execution gap</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                                <span class="text-red-400 text-lg">!</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium">HiPPO Decision-Making</p>
+                                <p class="text-slate-500 text-sm">Highest Paid Person's Opinion drives strategy instead of validated intelligence</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                                <span class="text-red-400 text-lg">!</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium">Analysis Paralysis</p>
+                                <p class="text-slate-500 text-sm">Mountains of data but no confidence to act</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card rounded-2xl p-8 card-glow">
+                    <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-6">The Stochasm Problem</h3>
+                    <div class="text-center mb-8">
+                        <div class="text-6xl font-bold text-white mb-2 stat-number">67%</div>
+                        <p class="text-slate-400">Average gap between what executives <em>think</em> they know and <em>actual</em> market reality</p>
+                    </div>
+                    <div class="border-t border-slate-700 pt-6">
+                        <p class="text-sm text-slate-500 italic">
+                            "Stochasm" = The dangerous gap between perception and reality that causes strategy to fail
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The System -->
+    <section id="system" class="py-20 px-6 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    Three Phases. Three Decisions. Continuous Validation.
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Each phase delivers a specific decision artifact that executives can act on immediately.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Discovery -->
+                <div class="metric-card rounded-xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-teal-400"></div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-teal-400 text-sm font-medium uppercase tracking-wider">Phase 1</span>
+                        <div class="phase-indicator bg-teal-400"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Discovery</h3>
+                    <p class="text-slate-400 mb-6">
+                        Detect early warning signals before competitors. Know what's changing in your market <em>before</em> it impacts your business.
+                    </p>
+                    <div class="border-t border-slate-700 pt-4">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider mb-2">Decision Output</p>
+                        <p class="text-teal-400 font-semibold">The LIST</p>
+                        <p class="text-slate-500 text-sm">Prioritized intelligence triggers, not information overload</p>
+                    </div>
+                </div>
+
+                <!-- Optimality -->
+                <div class="metric-card rounded-xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-amber-400"></div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-amber-400 text-sm font-medium uppercase tracking-wider">Phase 2</span>
+                        <div class="phase-indicator bg-amber-400"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Optimality</h3>
+                    <p class="text-slate-400 mb-6">
+                        Make choices and <em>sacrifice</em> alternatives. Strategy is what you choose NOT to do. Get clarity on where to invest.
+                    </p>
+                    <div class="border-t border-slate-700 pt-4">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider mb-2">Decision Output</p>
+                        <p class="text-amber-400 font-semibold">Investment Grade Conjecture</p>
+                        <p class="text-slate-500 text-sm">Choices validated enough to commit budget and people</p>
+                    </div>
+                </div>
+
+                <!-- Simulation -->
+                <div class="metric-card rounded-xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-indigo-400"></div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-indigo-400 text-sm font-medium uppercase tracking-wider">Phase 3</span>
+                        <div class="phase-indicator bg-indigo-400"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Simulation</h3>
+                    <p class="text-slate-400 mb-6">
+                        Wargame your strategy against competitors and stakeholders. Know your probability of success <em>before</em> you commit resources.
+                    </p>
+                    <div class="border-t border-slate-700 pt-4">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider mb-2">Decision Output</p>
+                        <p class="text-indigo-400 font-semibold">Actionable Esteem</p>
+                        <p class="text-slate-500 text-sm">Probability-scored confidence to act, not executive gut instinct</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outputs Section -->
+    <section id="outputs" class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    Actionable Outputs, Not Reports
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Every artifact is designed for immediate executive action. No shelf-ware.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Action Graph -->
+                <div class="metric-card rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-white mb-2">The Action Graph</h3>
+                    <p class="text-slate-400 text-sm mb-6">Three-dimensional prioritization: Impact x Imminence x Certainty</p>
+                    <div class="chart-container">
+                        <canvas id="actionGraph"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-4 text-center">Bubble size = Certainty of outcome. Act on high-certainty, high-impact items first.</p>
+                </div>
+
+                <!-- Confidence Metrics -->
+                <div class="space-y-6">
+                    <div class="metric-card rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-white font-medium">Strategy Confidence Score</h4>
+                            <span class="text-3xl font-bold text-teal-400 stat-number">78%</span>
+                        </div>
+                        <div class="w-full bg-slate-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-teal-500 to-cyan-500 h-2 rounded-full" style="width: 78%"></div>
+                        </div>
+                        <p class="text-slate-500 text-sm mt-3">Probability of achieving Winning Aspiration based on wargame simulation</p>
+                    </div>
+
+                    <div class="metric-card rounded-xl p-6">
+                        <h4 class="text-white font-medium mb-4">Stochasm Closure Rate</h4>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-teal-400 stat-number">12</div>
+                                <p class="text-slate-500 text-xs">Gaps Identified</p>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-amber-400 stat-number">9</div>
+                                <p class="text-slate-500 text-xs">Gaps Closed</p>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-indigo-400 stat-number">3</div>
+                                <p class="text-slate-500 text-xs">In Progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card rounded-xl p-6">
+                        <h4 class="text-white font-medium mb-4">Decision Cadence</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400 text-sm">Daily LIST Check</span>
+                                <span class="text-teal-400 text-sm font-medium">15 min</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400 text-sm">Bi-Weekly Optimality Orbit</span>
+                                <span class="text-amber-400 text-sm font-medium">60 min</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400 text-sm">Quarterly Simulation Test</span>
+                                <span class="text-indigo-400 text-sm font-medium">4 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-20 px-6 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">
+                Annual Planning vs. Strategic Intelligence
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="metric-card rounded-xl p-8 border-red-500/20">
+                    <h3 class="text-red-400 font-semibold uppercase text-sm tracking-wider mb-6">Annual Strategic Planning</h3>
+                    <ul class="space-y-4 text-slate-400">
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">-</span>
+                            Static document, obsolete at printing
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">-</span>
+                            HiPPO-driven decisions
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">-</span>
+                            Analysis paralysis
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">-</span>
+                            Executive retreat shelf-ware
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">-</span>
+                            Guessing at competitor reactions
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="metric-card rounded-xl p-8 border-teal-500/20 card-glow">
+                    <h3 class="text-teal-400 font-semibold uppercase text-sm tracking-wider mb-6">SuperCycle Intelligence</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-3">+</span>
+                            Living system, continuously validated
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-3">+</span>
+                            Investment Grade Conjecture
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-3">+</span>
+                            Actionable Esteem (probability-scored)
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-3">+</span>
+                            Decision triggers, not meetings
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-400 mr-3">+</span>
+                            Wargamed validation
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="action" class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Get Actionable Intelligence,<br>Not More Analysis
+            </h2>
+            <p class="text-xl text-slate-400 mb-8">
+                Know your probability of success before you commit resources. Remove magic and luck from strategic decisions.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#" class="px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+                    Request Demo
+                </a>
+                <a href="#" class="px-8 py-4 border border-slate-600 text-slate-300 font-medium rounded-lg hover:border-slate-500 hover:text-white transition-colors">
+                    Download Methodology
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-slate-500 text-sm">
+                &copy; 2025 Aurora WDC. Strategic Intelligence Operating System.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Action Graph (Bubble Chart)
+        const ctx = document.getElementById('actionGraph').getContext('2d');
+        new Chart(ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Act Now',
+                    data: [
+                        {x: 9, y: 9, r: 18},
+                        {x: 8, y: 7, r: 14}
+                    ],
+                    backgroundColor: 'rgba(20, 184, 166, 0.6)',
+                    borderColor: 'rgb(20, 184, 166)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Monitor',
+                    data: [
+                        {x: 5, y: 6, r: 10},
+                        {x: 6, y: 4, r: 12}
+                    ],
+                    backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                    borderColor: 'rgb(245, 158, 11)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Watch',
+                    data: [
+                        {x: 2, y: 3, r: 6},
+                        {x: 3, y: 2, r: 8}
+                    ],
+                    backgroundColor: 'rgba(99, 102, 241, 0.6)',
+                    borderColor: 'rgb(99, 102, 241)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Imminence', color: '#94A3B8' },
+                        min: 0, max: 10,
+                        grid: { color: 'rgba(71, 85, 105, 0.3)' },
+                        ticks: { color: '#94A3B8' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Impact', color: '#94A3B8' },
+                        min: 0, max: 10,
+                        grid: { color: 'rgba(71, 85, 105, 0.3)' },
+                        ticks: { color: '#94A3B8' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#94A3B8' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

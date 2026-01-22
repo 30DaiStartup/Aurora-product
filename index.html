@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora SuperCycle | Version Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            min-height: 100vh;
+        }
+
+        .version-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .version-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .old-badge {
+            background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+        }
+
+        .v1-badge {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+        }
+
+        .v2-badge {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+        }
+
+        .v3-badge {
+            background: linear-gradient(135deg, #1E3A5F 0%, #B8860B 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-5xl mx-auto px-6 py-16">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm mb-6">
+                Internal Review Portal
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Aurora SuperCycle
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Compare design iterations for the Strategic Intelligence Operating System landing page.
+            </p>
+        </div>
+
+        <!-- Old Version -->
+        <div class="mb-8">
+            <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Original Version</h2>
+            <a href="AuroraOS.html" class="version-card block rounded-xl p-6 group">
+                <div class="flex items-start gap-6">
+                    <div class="old-badge w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <span class="text-white font-bold text-lg">OLD</span>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-xl font-semibold text-white group-hover:text-teal-400 transition-colors">AuroraOS.html</h3>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded">Original</span>
+                        </div>
+                        <p class="text-slate-400 mb-3">
+                            The original version with "Waterfall" terminology. Uses project management framing instead of strategic planning positioning. Contains copy that needs revision per feedback.
+                        </p>
+                        <div class="flex items-center gap-4 text-sm text-slate-500">
+                            <span>Warm neutrals design</span>
+                            <span>&bull;</span>
+                            <span>Interactive phase tabs</span>
+                            <span>&bull;</span>
+                            <span>Chart.js visualizations</span>
+                        </div>
+                    </div>
+                    <div class="text-slate-500 group-hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- New Versions -->
+        <div>
+            <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">New Versions (Feedback Applied)</h2>
+
+            <div class="space-y-4">
+
+                <!-- Version 1: Executive -->
+                <a href="AuroraOS_v1_executive.html" class="version-card block rounded-xl p-6 group">
+                    <div class="flex items-start gap-6">
+                        <div class="v1-badge w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold text-lg">V1</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-xl font-semibold text-white group-hover:text-teal-400 transition-colors">Executive Decision-Maker</h3>
+                                <span class="px-2 py-1 bg-teal-500/20 text-teal-400 text-xs rounded">Premium</span>
+                            </div>
+                            <p class="text-slate-400 mb-3">
+                                Dark, premium aesthetic targeting C-suite executives. Emphasizes <strong class="text-white">metrics, ROI, and probability-scored confidence</strong>. Hero: "Stop Planning. Start Deciding." Features prominent statistics and the Action Graph visualization.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3 text-sm">
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Dark theme</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Metrics-driven</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Decision outputs</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Comparison table</span>
+                            </div>
+                        </div>
+                        <div class="text-slate-500 group-hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Version 2: SaaS -->
+                <a href="AuroraOS_v2_saas.html" class="version-card block rounded-xl p-6 group">
+                    <div class="flex items-start gap-6">
+                        <div class="v2-badge w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold text-lg">V2</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">SaaS Product Marketing</h3>
+                                <span class="px-2 py-1 bg-purple-500/20 text-purple-400 text-xs rounded">Modern</span>
+                            </div>
+                            <p class="text-slate-400 mb-3">
+                                Bright, modern SaaS aesthetic with purple/orange gradients. Showcases <strong class="text-white">three integrated apps</strong> (Discovery, Optimality, Simulation) with workflow visualization. Includes free trial CTAs and feature grids.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3 text-sm">
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Light theme</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">App-focused</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Free trial CTA</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Feature grid</span>
+                            </div>
+                        </div>
+                        <div class="text-slate-500 group-hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Version 3: Certification -->
+                <a href="AuroraOS_v3_certification.html" class="version-card block rounded-xl p-6 group">
+                    <div class="flex items-start gap-6">
+                        <div class="v3-badge w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold text-lg">V3</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-xl font-semibold text-white group-hover:text-amber-400 transition-colors">Certification & Education</h3>
+                                <span class="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs rounded">Institute</span>
+                            </div>
+                            <p class="text-slate-400 mb-3">
+                                Professional, academic aesthetic for the Aurora Institute. Features <strong class="text-white">three certification levels</strong> (CSP, CRS, CSM), the four professional roles, and the SuperCycle Manifesto. Targets consultants and strategy practitioners.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3 text-sm">
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Navy/gold</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Certification paths</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Role definitions</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-400 rounded">Rituals cadence</span>
+                            </div>
+                        </div>
+                        <div class="text-slate-500 group-hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Feedback Applied Note -->
+        <div class="mt-12 p-6 rounded-xl bg-white/5 border border-white/10">
+            <h3 class="text-white font-semibold mb-3">Feedback Applied in New Versions:</h3>
+            <ul class="space-y-2 text-slate-400 text-sm">
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Replaced "Waterfall" with "Annual Strategic Planning" / "Traditional Strategy"
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Emphasized actionability and decision outputs throughout
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Used correct terminology: Investment Grade Conjecture, Actionable Esteem, Stochasm
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Framed rituals as decision cadences with specific action outcomes
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Updated copyright year to 2025
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 text-center text-slate-500 text-sm">
+            Aurora WDC &bull; Internal Review &bull; January 2025
+        </div>
+
+    </div>
+
+</body>
+</html>

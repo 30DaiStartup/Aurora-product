@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora SuperCycle | The Strategy Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(180deg, #FAFBFF 0%, #F0F4FF 100%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 50%, #F97316 100%);
+        }
+
+        .app-card {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 280px;
+        }
+
+        .workflow-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10B981 0%, #F59E0B 50%, #6366F1 100%);
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .screen-mockup {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .screen-content {
+            background: #111827;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl hero-gradient flex items-center justify-center">
+                        <span class="text-white font-bold">A</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">Aurora SuperCycle</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#apps" class="text-gray-600 hover:text-gray-900 font-medium">Apps</a>
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 font-medium">Features</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-gray-900 font-medium">Pricing</a>
+                    <a href="#" class="px-5 py-2.5 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+                        Start Free Trial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="pt-32 pb-20 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="badge bg-purple-100 text-purple-700 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mr-2"></span>
+                        Strategic Intelligence Platform
+                    </div>
+
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Your strategy deserves
+                        <span class="bg-clip-text text-transparent hero-gradient">real-time intelligence</span>
+                    </h1>
+
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Replace static annual plans with a living intelligence system. Three integrated apps that deliver <strong>actionable decisions</strong>, not more reports.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#" class="px-8 py-4 hero-gradient text-white font-semibold rounded-xl text-center hover:opacity-90 transition-opacity">
+                            Start Free Trial
+                        </a>
+                        <a href="#apps" class="px-8 py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl text-center hover:bg-gray-200 transition-colors">
+                            See the Apps
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6 text-sm text-gray-500">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            14-day free trial
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            No credit card required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="screen-mockup">
+                    <div class="screen-content p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 class="text-white font-semibold">Action Graph</h4>
+                            <span class="badge bg-green-500/20 text-green-400 text-xs">Live</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="heroChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem/Solution -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Traditional strategy is failing. Here's why.
+            </h2>
+            <p class="text-xl text-gray-600 mb-16 max-w-3xl mx-auto">
+                Annual planning produces "Zombie Strategy"&mdash;plans that are obsolete the moment they're printed. Your team deserves better.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl font-extrabold text-red-500 mb-2">90%</div>
+                    <p class="text-gray-600">of strategies fail to execute successfully</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-extrabold text-orange-500 mb-2">10%</div>
+                    <p class="text-gray-600">of revenue lost to strategy-execution gap</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-extrabold text-purple-500 mb-2">67%</div>
+                    <p class="text-gray-600">average "Stochasm" (perception vs reality gap)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Three Apps -->
+    <section id="apps" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Three Apps. One Intelligence System.
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Each app delivers a specific decision output. Together, they form a continuous loop of strategic intelligence.
+                </p>
+            </div>
+
+            <!-- Workflow visualization -->
+            <div class="relative mb-16 hidden md:block">
+                <div class="workflow-line"></div>
+                <div class="flex justify-between relative z-10">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-500 flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg shadow-emerald-500/30">1</div>
+                        <span class="text-sm font-semibold text-gray-700">Discovery</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-500 flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg shadow-amber-500/30">2</div>
+                        <span class="text-sm font-semibold text-gray-700">Optimality</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-indigo-500 flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg shadow-indigo-500/30">3</div>
+                        <span class="text-sm font-semibold text-gray-700">Simulation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Discovery App -->
+                <div class="app-card rounded-2xl p-8 border-t-4 border-emerald-500">
+                    <div class="feature-icon bg-emerald-100 text-emerald-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Aurora Discovery</h3>
+                    <p class="text-gray-600 mb-6">
+                        AI-powered horizon scanning. Detect weak signals and early warnings before they become mainstream trends.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">STEEPLED macro-environment radar</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Stochasm Meter alerts</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Scout &amp; Sentry AI agents</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-xl p-4">
+                        <p class="text-xs text-emerald-700 font-semibold uppercase tracking-wider mb-1">Output</p>
+                        <p class="text-emerald-900 font-bold">The LIST</p>
+                        <p class="text-emerald-700 text-sm">Landscape, Issues, Stakeholders, Trends</p>
+                    </div>
+                </div>
+
+                <!-- Optimality App -->
+                <div class="app-card rounded-2xl p-8 border-t-4 border-amber-500">
+                    <div class="feature-icon bg-amber-100 text-amber-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Aurora Optimality</h3>
+                    <p class="text-gray-600 mb-6">
+                        Make strategic choices with confidence. Select winning options and explicitly sacrifice the rest.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Choice Cascade builder</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">FITU value proposition editor</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Sacrifice Matrix</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 rounded-xl p-4">
+                        <p class="text-xs text-amber-700 font-semibold uppercase tracking-wider mb-1">Output</p>
+                        <p class="text-amber-900 font-bold">Investment Grade Conjecture</p>
+                        <p class="text-amber-700 text-sm">Strategy validated for resource commitment</p>
+                    </div>
+                </div>
+
+                <!-- Simulation App -->
+                <div class="app-card rounded-2xl p-8 border-t-4 border-indigo-500">
+                    <div class="feature-icon bg-indigo-100 text-indigo-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Aurora Simulation</h3>
+                    <p class="text-gray-600 mb-6">
+                        Wargame your strategy before you commit. AI personas simulate competitor and stakeholder reactions.
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-indigo-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Action Graph visualizer</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-indigo-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Counterfactual "What If" engine</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-indigo-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-700 text-sm">Automated wargaming</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 rounded-xl p-4">
+                        <p class="text-xs text-indigo-700 font-semibold uppercase tracking-wider mb-1">Output</p>
+                        <p class="text-indigo-900 font-bold">Actionable Esteem</p>
+                        <p class="text-indigo-700 text-sm">Probability-scored confidence to act</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Built for Strategic Intelligence
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Every feature designed to deliver actionable decisions, not more analysis.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-6">
+                    <div class="feature-icon bg-purple-100 text-purple-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Real-time Alerts</h3>
+                    <p class="text-gray-600 text-sm">Stochasm Meter triggers when reality diverges from your assumptions. Never be blindsided.</p>
+                </div>
+
+                <div class="p-6">
+                    <div class="feature-icon bg-blue-100 text-blue-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Confidence Scoring</h3>
+                    <p class="text-gray-600 text-sm">Know your probability of success before committing resources. No more gut instinct decisions.</p>
+                </div>
+
+                <div class="p-6">
+                    <div class="feature-icon bg-green-100 text-green-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">AI Wargaming</h3>
+                    <p class="text-gray-600 text-sm">AI personas role-play competitors and stakeholders to stress-test your strategy.</p>
+                </div>
+
+                <div class="p-6">
+                    <div class="feature-icon bg-rose-100 text-rose-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Continuous Loop</h3>
+                    <p class="text-gray-600 text-sm">Discovery feeds Optimality feeds Simulation. Your strategy stays aligned with reality.</p>
+                </div>
+
+                <div class="p-6">
+                    <div class="feature-icon bg-orange-100 text-orange-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Decision Cadence</h3>
+                    <p class="text-gray-600 text-sm">Daily, bi-weekly, and quarterly rituals ensure continuous strategic recalibration.</p>
+                </div>
+
+                <div class="p-6">
+                    <div class="feature-icon bg-teal-100 text-teal-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Martian Protocol</h3>
+                    <p class="text-gray-600 text-sm">Step-by-step logic chains that remove "magic" and "luck" from your strategy narrative.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="hero-gradient rounded-3xl p-12 text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Ready to stop planning and start deciding?
+                </h2>
+                <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+                    Join forward-thinking organizations using Aurora SuperCycle to turn strategic intelligence into actionable decisions.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#" class="px-8 py-4 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+                        Start Free Trial
+                    </a>
+                    <a href="#" class="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors">
+                        Talk to Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 Aurora WDC. Strategic Intelligence Platform.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('heroChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'High Priority',
+                    data: [{x: 9, y: 9, r: 16}, {x: 8, y: 7, r: 12}],
+                    backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                    borderColor: 'rgb(16, 185, 129)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Monitor',
+                    data: [{x: 5, y: 6, r: 10}, {x: 6, y: 4, r: 8}],
+                    backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                    borderColor: 'rgb(245, 158, 11)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Watch',
+                    data: [{x: 2, y: 3, r: 6}, {x: 3, y: 2, r: 5}],
+                    backgroundColor: 'rgba(99, 102, 241, 0.6)',
+                    borderColor: 'rgb(99, 102, 241)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Imminence', color: '#9CA3AF' },
+                        min: 0, max: 10,
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#9CA3AF' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Impact', color: '#9CA3AF' },
+                        min: 0, max: 10,
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#9CA3AF' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#9CA3AF', padding: 20 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
